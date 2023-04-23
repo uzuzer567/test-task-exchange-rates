@@ -1,0 +1,45 @@
+.rate {
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__triangle-green {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid green;
+    }
+
+    &__triangle-red {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 10px solid red;
+    }
+
+    &__value-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border: 2px solid black;
+        padding: 3px;
+    }
+
+    &__difference-container {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
