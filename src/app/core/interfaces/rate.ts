@@ -1,4 +1,6 @@
+import { RateCode } from '../../core/enums/rate-code';
+
 export interface Rate {
-  rate: string;
+  code: RateCode;
   value: number;
 }

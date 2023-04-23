@@ -1,0 +1,13 @@
+.btn {
+    border: 2px solid black;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-line-height: 0.8;
+    --bs-btn-padding-x: 0.45rem;
+    --bs-btn-padding-y: 0.3rem;
+    --bs-btn-border-width: 2px;
+    --bs-btn-border-radius: 50%;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}

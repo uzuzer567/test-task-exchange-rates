@@ -1,10 +1,18 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { Rate } from '../../../core/interfaces/rate';
 
 @Component({
   selector: 'app-exchange-rate',
   templateUrl: './exchange-rate.component.html',
   styleUrls: ['./exchange-rate.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExchangeRateComponent implements OnInit {
   @ViewChild('triangle', { static: true }) triangleElement!: ElementRef;
