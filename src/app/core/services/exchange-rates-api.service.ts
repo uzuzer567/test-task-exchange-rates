@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { RateCode } from '../enums/rate-code';
 
-const apiKey = '';
+const apiKey = '0NNlVAzaLR0ciaegQWm6VOp26DN0XFac';
 const baseUrl = 'https://api.apilayer.com/currency_data';
 
 @Injectable({

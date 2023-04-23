@@ -1,3 +1,11 @@
-<div class="rates-list" *ngFor="let rate of rates">
-    <app-exchange-rate [rate]="rate"></app-exchange-rate>
+<div *ngIf="!loading; else loader">
+    <div class="rates-list" *ngFor="let rate of rates" >
+        <app-exchange-rate [rate]="rate"></app-exchange-rate>
+    </div>
 </div>
+
+<ng-template #loader>
+    <div class="loader">
+        <app-loader></app-loader>
+    </div>
+</ng-template>

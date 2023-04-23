@@ -2,9 +2,9 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { Subscription, interval } from 'rxjs';
+import { interval, finalize } from 'rxjs';
 import { Rate } from '../../../core/interfaces/rate';
 import { RateCode } from '../../../core/enums/rate-code';
 import { ExchangeRatesApiService } from '../../../core/services/exchange-rates-api.service';
@@ -17,24 +17,38 @@ import { DropdownOption } from '../../../core/interfaces/dropdown-option';
   styleUrls: ['./exchange-rates-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExchangeRatesListComponent implements OnInit, OnDestroy {
+export class ExchangeRatesListComponent implements OnInit {
   rates!: Rate[];
-  timer!: Subscription;
+
+  loading = true;
+
   constructor(
     private exchangeRatesApiService: ExchangeRatesApiService,
-    private exchangeRatesService: ExchangeRatesService
+    private exchangeRatesService: ExchangeRatesService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.exchangeRatesApiService
       .getRates(RateCode.RUB, this.getRates())
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.markForCheck();
+        })
+      )
       .subscribe(rates => {
         this.setRates(rates.quotes);
       });
 
     interval(5000)
-      .pipe(() =>
-        this.exchangeRatesApiService.getRates(RateCode.RUB, this.getRates())
+      .pipe(
+        () =>
+          this.exchangeRatesApiService.getRates(RateCode.RUB, this.getRates()),
+        finalize(() => {
+          this.loading = false;
+          this.cdr.markForCheck();
+        })
       )
       .subscribe(rates => {
         this.setRates(rates.quotes);
@@ -54,9 +68,5 @@ export class ExchangeRatesListComponent implements OnInit, OnDestroy {
       code: rate.replace(RateCode.RUB, '') as RateCode,
       value: rates[rate],
     }));
-  }
-
-  ngOnDestroy() {
-    this.timer.unsubscribe();
   }
 }
