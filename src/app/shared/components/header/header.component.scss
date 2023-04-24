@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 25px 0;
+    margin: 0 auto;
+
+    &__title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 1.5em;
+    }
+
+    &__title-text {
+        margin-right: 20px;
+    }
+
+    &__add-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    &__date {
+        font-size: 0.9em;
+    }
+}

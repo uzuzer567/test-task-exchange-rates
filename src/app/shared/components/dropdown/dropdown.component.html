@@ -1,0 +1,10 @@
+<div ngbDropdown class="dropdown" autoClose="outside">
+    <button class="btn" id="dropdown" ngbDropdownToggle>
+        +
+    </button>
+  <div ngbDropdownMenu="dropdown">
+        <button class="dropdown-item" *ngFor="let option of options" (click)="onClick(option)">
+          <span *ngIf="option.isSelected">+ </span>{{ option.rateCode }}
+        </button>
+  </div>
+</div>
