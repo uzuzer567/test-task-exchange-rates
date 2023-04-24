@@ -10,6 +10,7 @@ import { ExchangeRateComponent } from './modules/exchange-rates/exchange-rate/ex
 import { ExchangeRatesListComponent } from './modules/exchange-rates/exchange-rates-list/exchange-rates-list.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DropdownComponent } from './shared/components/dropdown/dropdown.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DropdownComponent } from './shared/components/dropdown/dropdown.compone
     ExchangeRatesListComponent,
     HeaderComponent,
     DropdownComponent,
+    LoaderComponent,
   ],
   imports: [
     FormsModule,
