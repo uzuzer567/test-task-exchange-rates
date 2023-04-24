@@ -4,7 +4,7 @@ import {
   OnInit,
   ChangeDetectorRef,
 } from '@angular/core';
-import { interval, finalize } from 'rxjs';
+import { interval, finalize, mergeMap } from 'rxjs';
 import { Rate } from '../../../core/interfaces/rate';
 import { RateCode } from '../../../core/enums/rate-code';
 import { ExchangeRatesApiService } from '../../../core/services/exchange-rates-api.service';
@@ -40,11 +40,12 @@ export class ExchangeRatesListComponent implements OnInit {
       .subscribe(rates => {
         this.setRates(rates.quotes);
       });
-
+    /*
     interval(5000)
       .pipe(
-        () =>
-          this.exchangeRatesApiService.getRates(RateCode.RUB, this.getRates()),
+        mergeMap(() =>
+          this.exchangeRatesApiService.getRates(RateCode.RUB, this.getRates())
+        ),
         finalize(() => {
           this.loading = false;
           this.cdr.markForCheck();
@@ -52,7 +53,7 @@ export class ExchangeRatesListComponent implements OnInit {
       )
       .subscribe(rates => {
         this.setRates(rates.quotes);
-      });
+      });*/
   }
 
   getRates(): RateCode[] {
