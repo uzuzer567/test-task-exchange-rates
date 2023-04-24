@@ -15,16 +15,24 @@ import { Rate } from '../../../core/interfaces/rate';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExchangeRateComponent implements OnInit {
-  @ViewChild('triangle', { static: true }) triangleElement!: ElementRef;
-  @ViewChild('difference', { static: true })
+  @ViewChild('triangleElement', { static: true }) triangleElement!: ElementRef;
+  @ViewChild('differenceElement', { static: true })
   differenceElement!: ElementRef;
   @Input() rate!: Rate;
 
+  get difference(): number {
+    if (this.rate.currentValue) {
+      return this.rate.currentValue - this.rate.previousValue;
+    } else {
+      return 0;
+    }
+  }
+
   ngOnInit() {
-    if (this.rate) {
+    if (this.difference > 0) {
       this.triangleElement.nativeElement.classList.add('rate__triangle-green');
       this.differenceElement.nativeElement.classList.add('green');
-    } else {
+    } else if (this.difference < 0) {
       this.triangleElement.nativeElement.classList.add('rate__triangle-red');
       this.differenceElement.nativeElement.classList.add('red');
     }

@@ -31,13 +31,17 @@
         flex-direction: row;
         justify-content: space-between;
         border: 2px solid black;
-        padding: 3px;
+        padding: 3px 10px;
     }
 
     &__difference-container {
         display: flex;
         flex-direction: row;
         align-items: baseline;
+    }
+
+    &__difference {
+        margin-left: 5px;
     }
 }
 

@@ -1,15 +1,7 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  OnInit,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { interval, finalize, mergeMap } from 'rxjs';
-import { Rate } from '../../../core/interfaces/rate';
-import { RateCode } from '../../../core/enums/rate-code';
-import { ExchangeRatesApiService } from '../../../core/services/exchange-rates-api.service';
-import { ExchangeRatesService } from '../../../core/services/exchange-rates.service';
-import { DropdownOption } from '../../../core/interfaces/dropdown-option';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadRates } from '../../store/actions/rate.actions';
+import { getSelectedRates } from '../../store/selectors/rate.selectors';
 
 @Component({
   selector: 'app-exchange-rates-list',
@@ -18,56 +10,15 @@ import { DropdownOption } from '../../../core/interfaces/dropdown-option';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExchangeRatesListComponent implements OnInit {
-  rates!: Rate[];
+  rates$ = this.store.select(getSelectedRates);
 
-  loading = true;
-
-  constructor(
-    private exchangeRatesApiService: ExchangeRatesApiService,
-    private exchangeRatesService: ExchangeRatesService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private readonly store: Store) {}
 
   ngOnInit() {
-    this.exchangeRatesApiService
-      .getRates(RateCode.RUB, this.getRates())
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-          this.cdr.markForCheck();
-        })
-      )
-      .subscribe(rates => {
-        this.setRates(rates.quotes);
-      });
-    /*
-    interval(5000)
-      .pipe(
-        mergeMap(() =>
-          this.exchangeRatesApiService.getRates(RateCode.RUB, this.getRates())
-        ),
-        finalize(() => {
-          this.loading = false;
-          this.cdr.markForCheck();
-        })
-      )
-      .subscribe(rates => {
-        this.setRates(rates.quotes);
-      });*/
-  }
+    this.store.dispatch(loadRates());
 
-  getRates(): RateCode[] {
-    return this.exchangeRatesService.rates
-      .filter((rate: DropdownOption) => rate.isSelected)
-      .map((rate: DropdownOption) => {
-        return rate.rateCode;
-      });
-  }
-
-  setRates(rates: any) {
-    this.rates = Object.keys(rates).map(rate => ({
-      code: rate.replace(RateCode.RUB, '') as RateCode,
-      value: rates[rate],
-    }));
+    setInterval(() => {
+      this.store.dispatch(loadRates());
+    }, 5000);
   }
 }

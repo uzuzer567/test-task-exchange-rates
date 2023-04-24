@@ -11,6 +11,10 @@ import { ExchangeRatesListComponent } from './modules/exchange-rates/exchange-ra
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DropdownComponent } from './shared/components/dropdown/dropdown.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers } from './modules/store/reducers';
+import { RatesEffect } from './modules/store/effects/rate.effects';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([RatesEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,8 +3,8 @@
         +
     </button>
   <div ngbDropdownMenu="dropdown">
-        <button class="dropdown-item" *ngFor="let option of options" (click)="onClick(option)">
-          <span *ngIf="option.isSelected">+ </span>{{ option.rateCode }}
+        <button class="dropdown-item" *ngFor="let option of options$ | async" (click)="onClick(option)">
+          <span *ngIf="option.isSelected">+ </span>{{ option.code }}
         </button>
   </div>
 </div>

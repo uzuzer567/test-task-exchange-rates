@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { DropdownOption } from '../../../core/interfaces/dropdown-option';
-import { ExchangeRatesService } from '../../../core/services/exchange-rates.service';
+import { Rate } from '../../../core/interfaces/rate';
+import { Store } from '@ngrx/store';
+import { selectRate } from '../../../modules/store/actions/rate.actions';
+import { getAllRates } from '../../../modules/store/selectors/rate.selectors';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,13 +10,11 @@ import { ExchangeRatesService } from '../../../core/services/exchange-rates.serv
   styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent {
-  get options() {
-    return this.exchangeRatesService.rates;
-  }
+  options$ = this.store.select(getAllRates);
 
-  constructor(private exchangeRatesService: ExchangeRatesService) {}
+  constructor(private readonly store: Store) {}
 
-  onClick(option: DropdownOption) {
-    option.isSelected = !option.isSelected;
+  onClick(option: Rate) {
+    this.store.dispatch(selectRate(option));
   }
 }
