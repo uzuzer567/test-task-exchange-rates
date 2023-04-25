@@ -1,7 +1,7 @@
 <div class="rate__container">
-    <span class="rate__text">{{ rate.code }}</span>
+    <span class="rate__text">{{ rate?.code }}</span>
     <div class="rate__value-container">
-        <span class="rate__value">{{ rate.currentValue }}</span>
+        <span class="rate__value">{{ rate?.currentValue }}</span>
         <div #differenceElement class="rate__difference-container">
             <span #triangleElement></span>
             <span class="rate__difference">({{ difference | number:'.6' }})</span>

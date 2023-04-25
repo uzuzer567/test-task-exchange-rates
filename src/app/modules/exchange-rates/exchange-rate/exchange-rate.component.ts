@@ -21,7 +21,7 @@ export class ExchangeRateComponent implements OnInit {
   @Input() rate!: Rate;
 
   get difference(): number {
-    if (this.rate.currentValue) {
+    if (this.rate?.currentValue && this.rate?.previousValue) {
       return this.rate.currentValue - this.rate.previousValue;
     } else {
       return 0;
@@ -29,6 +29,10 @@ export class ExchangeRateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setDifferenceContainerStyles();
+  }
+
+  setDifferenceContainerStyles() {
     if (this.difference > 0) {
       this.triangleElement.nativeElement.classList.add('rate__triangle-green');
       this.differenceElement.nativeElement.classList.add('green');
