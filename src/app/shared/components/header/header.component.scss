@@ -1,3 +1,5 @@
+@import 'utilies';
+
 .header {
     display: flex;
     flex-direction: column;
@@ -10,6 +12,12 @@
         flex-direction: row;
         align-items: center;
         font-size: 1.5em;
+
+        @include for-mobile-360 {
+            flex-direction: column;
+            align-items: start;
+            margin-bottom: 8px;
+        }
     }
 
     &__title-text {

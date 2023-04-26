@@ -20,9 +20,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     const apiKey = '';
     req = req.clone({
-      setHeaders: {
-        apikey: apiKey,
-      },
+      headers: req.headers.set('apikey', apiKey),
     });
 
     return next.handle(req).pipe(

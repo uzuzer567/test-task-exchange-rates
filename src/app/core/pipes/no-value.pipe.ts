@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NoValuePipe implements PipeTransform {
   transform(value: any): number | string {
     if (value === undefined || value === null || !Number.isFinite(value)) {
-      return '---';
+      return '------';
     } else {
       return value.toFixed(6);
     }

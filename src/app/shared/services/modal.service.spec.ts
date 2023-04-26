@@ -13,4 +13,10 @@ describe('ModalService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should check modal window opening', () => {
+    expect(service.modalRef).toBeUndefined();
+    service.openDialog({});
+    expect(service.modalRef).toBeDefined();
+  });
 });

@@ -22,7 +22,7 @@ export class ExchangeRateComponent implements OnInit {
 
   get difference(): number | null {
     if (this.rate?.currentValue && this.rate?.previousValue) {
-      return Math.abs(this.rate.currentValue - this.rate.previousValue);
+      return Math.abs(this.rate.previousValue - this.rate.currentValue);
     } else {
       return null;
     }

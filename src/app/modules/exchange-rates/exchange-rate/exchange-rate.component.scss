@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'utilies';
 
 .rate {
     &__container {
@@ -7,6 +8,11 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 10px;
+
+        @include for-mobile-360 {
+            flex-direction: column;
+            align-items: start;
+        } 
     }
 
     &__text {
@@ -36,6 +42,10 @@
         justify-content: space-between;
         border: 2px solid black;
         padding: 3px 10px;
+
+        @include for-mobile-480 {
+            flex-direction: column;
+        }   
     }
 
     &__difference-container {
@@ -46,6 +56,10 @@
 
     &__difference {
         margin-left: 5px;
+
+        @include for-mobile-480 {
+            margin-left: 0px;
+        }   
     }
 }
 
