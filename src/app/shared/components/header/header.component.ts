@@ -5,7 +5,6 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { RateCode } from '../../../core/enums/rate-code';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +13,6 @@ import { RateCode } from '../../../core/enums/rate-code';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  RateCode = RateCode;
   currentDate = new Date();
   intervalId!: number;
 

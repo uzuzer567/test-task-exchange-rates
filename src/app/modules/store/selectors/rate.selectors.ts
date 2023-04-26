@@ -7,3 +7,8 @@ export const getAllRates = createSelector(selectState, state => state.rates);
 export const getSelectedRates = createSelector(selectState, state =>
   state.rates.filter(rate => rate.isSelected)
 );
+
+export const getRatesLoading = createSelector(
+  selectState,
+  state => state.isLoading
+);
