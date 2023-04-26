@@ -11,5 +11,10 @@
     "EUR": "EUR",
     "USD": "USD",
     "RUB": "RUB"
+  },
+  "errorModal": {
+    "title": "Oops... something wrong!",
+    "message": "Error",
+    "status": "Status"
   }
 }
