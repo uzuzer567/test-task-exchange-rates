@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
 import { Rate } from '../../../core/interfaces/rate';
 import { RateCode } from '../../../core/enums/rate-code';
+import { NoValuePipe } from '../../../core/pipes/no-value.pipe';
 import { ExchangeRateComponent } from './exchange-rate.component';
 
 describe('ExchangeRateComponent', () => {
@@ -29,8 +31,9 @@ describe('ExchangeRateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       providers: [provideMockStore({})],
-      declarations: [ExchangeRateComponent],
+      declarations: [NoValuePipe, ExchangeRateComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExchangeRateComponent);
