@@ -4,7 +4,7 @@
     </button>
   <div ngbDropdownMenu="dropdown">
         <button class="dropdown-item" *ngFor="let option of options$ | async" (click)="onClick(option)">
-          <span *ngIf="option.isSelected">+ </span>{{ option.code }}
+          <span *ngIf="option.isSelected">+ </span>{{ 'rates.' + option.code | translate }}
         </button>
   </div>
 </div>
