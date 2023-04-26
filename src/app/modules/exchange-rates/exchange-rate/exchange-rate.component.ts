@@ -20,11 +20,11 @@ export class ExchangeRateComponent implements OnInit {
   differenceElement!: ElementRef;
   @Input() rate!: Rate;
 
-  get difference(): number {
+  get difference(): number | null {
     if (this.rate?.currentValue && this.rate?.previousValue) {
-      return this.rate.currentValue - this.rate.previousValue;
+      return Math.abs(this.rate.currentValue - this.rate.previousValue);
     } else {
-      return 0;
+      return null;
     }
   }
 
@@ -33,12 +33,16 @@ export class ExchangeRateComponent implements OnInit {
   }
 
   setDifferenceContainerStyles() {
-    if (this.difference > 0) {
-      this.triangleElement.nativeElement.classList.add('rate__triangle-green');
-      this.differenceElement.nativeElement.classList.add('green');
-    } else if (this.difference < 0) {
-      this.triangleElement.nativeElement.classList.add('rate__triangle-red');
-      this.differenceElement.nativeElement.classList.add('red');
+    if (this.rate?.currentValue && this.rate?.previousValue) {
+      if (this.rate.currentValue - this.rate.previousValue > 0) {
+        this.triangleElement.nativeElement.classList.add(
+          'rate__triangle-green'
+        );
+        this.differenceElement.nativeElement.classList.add('green');
+      } else if (this.rate.currentValue - this.rate.previousValue < 0) {
+        this.triangleElement.nativeElement.classList.add('rate__triangle-red');
+        this.differenceElement.nativeElement.classList.add('red');
+      }
     }
   }
 }
