@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
+import { ExchangeRateComponent } from '../exchange-rate/exchange-rate.component';
 import { ExchangeRatesListComponent } from './exchange-rates-list.component';
 
 describe('ExchangeRatesListComponent', () => {
@@ -8,7 +9,8 @@ describe('ExchangeRatesListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ExchangeRatesListComponent],
+      providers: [provideMockStore({})],
+      declarations: [ExchangeRatesListComponent, ExchangeRateComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExchangeRatesListComponent);

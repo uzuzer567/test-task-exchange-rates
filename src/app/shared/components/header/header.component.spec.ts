@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -8,7 +9,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
+      providers: [provideMockStore({})],
+      declarations: [HeaderComponent, DropdownComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
