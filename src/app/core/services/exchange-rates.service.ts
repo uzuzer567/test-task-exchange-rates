@@ -18,7 +18,7 @@ export class ExchangeRatesService {
     return currentRates.map(rate => ({
       code: rate.code,
       isSelected: rate.isSelected,
-      currentValue: receivedRates[RateCode.RUB + rate.code],
+      currentValue: receivedRates[RateCode.RUB + rate.code] ?? 0,
       previousValue: rate.currentValue,
     }));
   }
