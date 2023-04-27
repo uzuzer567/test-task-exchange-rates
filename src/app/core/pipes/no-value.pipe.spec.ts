@@ -1,8 +1,12 @@
 import { NoValuePipe } from './no-value.pipe';
 
 describe('NoValuePipe', () => {
+  const pipe = new NoValuePipe();
   it('create an instance', () => {
-    const pipe = new NoValuePipe();
     expect(pipe).toBeTruthy();
+  });
+
+  it('should return "------"', () => {
+    expect(pipe.transform(undefined)).toBe('------');
   });
 });

@@ -20,13 +20,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.intervalId = window.setInterval(() => {
-      this.updateDate();
+      this.currentDate = new Date();
+      this.cdr.markForCheck();
     }, 1000);
-  }
-
-  updateDate() {
-    this.currentDate = new Date();
-    this.cdr.markForCheck();
   }
 
   ngOnDestroy() {
