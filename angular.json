@@ -73,7 +73,8 @@
               "browserTarget": "test-task-exchange-rates:build:production"
             },
             "development": {
-              "browserTarget": "test-task-exchange-rates:build:development"
+              "browserTarget": "test-task-exchange-rates:build:development",
+              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"
